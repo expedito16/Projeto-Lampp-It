@@ -1,0 +1,57 @@
+<section class="container mt-5 bm-5">
+    <div class="text-right mb-2">
+        <button (click)="createClient()" type="button" class="btn btn-success btn-sm mb-2">
+            <i class="bi bi-person-add mr-1"></i>
+            <strong>Novo cliente</strong>
+        </button>
+    </div>
+    <h2>Lista de Clientes</h2>
+    <table *ngIf="clients.length > 0; else emptyList" 
+        class="table table-responsive-lg table-striped text-center"
+    >
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of clients">
+                <td>{{ client.firstName }}</td>
+                <td>{{ client.lastName }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.phone }}</td>
+                <td class="d-flex just-content-between">
+                    <button 
+                        (click)="clientDetails(client.id)" 
+                        class="btn btn-info btn-sm mr-3"
+                    >
+                        <i class="bi bi-eye mr-1"></i>
+                        Visualizar
+                    </button>
+                    <button 
+                        (click)="updateClient(client.id)" 
+                        class="btn btn-primary btn-sm mr-3"
+                    >
+                        <i class="bi bi-pen mr-1"></i>
+                        Editar
+                    </button>
+                    <button 
+                        (click)="deleteClient(client.id)" 
+                        class="btn btn-danger btn-sm"
+                    >
+                        <i class="bi bi-trash mr-1"></i>
+                        Apagar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #emptyList class="col-sm-12">
+        <p class="text-center mt-5"><strong>Nenhum cliente cadastrado até o momento!</strong></p>        
+    </ng-template>
+</section>
